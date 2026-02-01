@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "arazrezervasyon"
+  },
+  "targets": {
+    "arazrezervasyon": {
+      "hosting": {
+        "arazrezervasyon": [
+          "arazrezervasyon"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

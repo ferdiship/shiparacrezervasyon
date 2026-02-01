@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ship Araç Rezervasyon Sistemi</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMyNTYzRUI7IiAvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM0RjQ2RTU7IiAvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIHJ4PSIyMCIgZmlsbD0idXJsKCNncmFkKSIvPgogIDxwYXRoIGQ9Ik00MCw1MCBMODAsMTUwIEwxMjAsNTAgTDE2MCwxNTAgTDQwLDUwIFoiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjQiLz4KICA8cGF0aCBkPSJNNjIsNjAgQzc1LDU1IDg3LDYwIDk1LDcwIEMxMDIsODAgOTUsOTUgODAsMTAwIEM5NSwxMDAgMTEwLDExMCAxMTAsMTI1IEMxMTAsMTQwIDk1LDE1MCA3NSwxNTAgTDYwLDE1MCBMNjAsMTMwIEw3NSwxMzAgQzg1LDEzMCA5MCwxMjUgOTAsMTIwIEM5MCwxMTUgODUsMTEwIDc1LDExMCBMNjAsMTEwIEw2MCw5MCBMNzAsOTAgQzgwLDkwIDg1LDg1IDg1LDgwIEM4NSw3NSA4MCw3MCA3MCw3MCBMNjAsNzAgTDYwLDYwIEw2Miw2MCBaIiBmaWxsPSJ3aGl0ZSIvPgogIDxwYXRoIGQ9Ik0xMTUsNjAgQzEzMCw2MCAxNTAsNjUgMTUwLDkwIEwxMzAsOTAgQzEzMCw4MCAxMjUsNzUgMTE1LDc1IEMxMDUsNzUgMTAwLDgwIDEwMCw5MCBDMTAwLDEwMCAxMDUsMTA1IDExNSwxMDUgTDEyMCwxMDUgTDEyMCwxMjAgTDExNSwxMjAgQzEwNSwxMjAgMTAwLDEyNSAxMDAsMTM1IEMxMDAsMTQ1IDEwNSwxNTAgMTE1LDE1MCBDMTI1LDE1MCAxMzAsMTQ1IDEzMCwxMzUgTDE1MCwxMzUgQzE1MCwxNjAgMTMwLDE2NSAxMTUsMTY1IEM5MCwxNjUgODAsMTUwIDgwLDEzNSBDODAsMTIwIDkwLDExNSAxMDUsMTEwIEM5MCwxMDUgODAsMTAwIDgwLDg1IEM4MCw3MCA5MCw2MCAxMTUsNjAgWiIgZmlsbD0id2hpdGUiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjE4NSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U2hpcDwvdGV4dD4KPC9zdmc+">
+    <link rel="shortcut icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMyNTYzRUI7IiAvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM0RjQ2RTU7IiAvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIHJ4PSIyMCIgZmlsbD0idXJsKCNncmFkKSIvPgogIDxwYXRoIGQ9Ik00MCw1MCBMODAsMTUwIEwxMjAsNTAgTDE2MCwxNTAgTDQwLDUwIFoiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjQiLz4KICA8cGF0aCBkPSJNNjIsNjAgQzc1LDU1IDg3LDYwIDk1LDcwIEMxMDIsODAgOTUsOTUgODAsMTAwIEM5NSwxMDAgMTEwLDExMCAxMTAsMTI1IEMxMTAsMTQwIDk1LDE1MCA3NSwxNTAgTDYwLDE1MCBMNjAsMTMwIEw3NSwxMzAgQzg1LDEzMCA5MCwxMjUgOTAsMTIwIEM5MCwxMTUgODUsMTEwIDc1LDExMCBMNjAsMTEwIEw2MCw5MCBMNzAsOTAgQzgwLDkwIDg1LDg1IDg1LDgwIEM4NSw3NSA4MCw3MCA3MCw3MCBMNjAsNzAgTDYwLDYwIEw2Miw2MCBaIiBmaWxsPSJ3aGl0ZSIvPgogIDxwYXRoIGQ9Ik0xMTUsNjAgQzEzMCw2MCAxNTAsNjUgMTUwLDkwIEwxMzAsOTAgQzEzMCw4MCAxMjUsNzUgMTE1LDc1IEMxMDUsNzUgMTAwLDgwIDEwMCw5MCBDMTAwLDEwMCAxMDUsMTA1IDExNSwxMDUgTDEyMCwxMDUgTDEyMCwxMjAgTDExNSwxMjAgQzEwNSwxMjAgMTAwLDEyNSAxMDAsMTM1IEMxMDAsMTQ1IDEwNSwxNTAgMTE1LDE1MCBDMTI1LDE1MCAxMzAsMTQ1IDEzMCwxMzUgTDE1MCwxMzUgQzE1MCwxNjAgMTMwLDE2NSAxMTUsMTY1IEM5MCwxNjUgODAsMTUwIDgwLDEzNSBDODAsMTIwIDkwLDExNSAxMDUsMTEwIEM5MCwxMDUgODAsMTAwIDgwLDg1IEM4MCw3MCA5MCw2MCAxMTUsNjAgWiIgZmlsbD0id2hpdGUiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjE4NSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U2hpcDwvdGV4dD4KPC9zdmc+">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMyNTYzRUI7IiAvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM0RjQ2RTU7IiAvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIHJ4PSIyMCIgZmlsbD0idXJsKCNncmFkKSIvPgogIDxwYXRoIGQ9Ik00MCw1MCBMODAsMTUwIEwxMjAsNTAgTDE2MCwxNTAgTDQwLDUwIFoiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjQiLz4KICA8cGF0aCBkPSJNNjIsNjAgQzc1LDU1IDg3LDYwIDk1LDcwIEMxMDIsODAgOTUsOTUgODAsMTAwIEM5NSwxMDAgMTEwLDExMCAxMTAsMTI1IEMxMTAsMTQwIDk1LDE1MCA3NSwxNTAgTDYwLDE1MCBMNjAsMTMwIEw3NSwxMzAgQzg1LDEzMCA5MCwxMjUgOTAsMTIwIEM5MCwxMTUgODUsMTEwIDc1LDExMCBMNjAsMTEwIEw2MCw5MCBMNzAsOTAgQzgwLDkwIDg1LDg1IDg1LDgwIEM4NSw3NSA4MCw3MCA3MCw3MCBMNjAsNzAgTDYwLDYwIEw2Miw2MCBaIiBmaWxsPSJ3aGl0ZSIvPgogIDxwYXRoIGQ9Ik0xMTUsNjAgQzEzMCw2MCAxNTAsNjUgMTUwLDkwIEwxMzAsOTAgQzEzMCw4MCAxMjUsNzUgMTE1LDc1IEMxMDUsNzUgMTAwLDgwIDEwMCw5MCBDMTAwLDEwMCAxMDUsMTA1IDExNSwxMDUgTDEyMCwxMDUgTDEyMCwxMjAgTDExNSwxMjAgQzEwNSwxMjAgMTAwLDEyNSAxMDAsMTM1IEMxMDAsMTQ1IDEwNSwxNTAgMTE1LDE1MCBDMTI1LDE1MCAxMzAsMTQ1IDEzMCwxMzUgTDE1MCwxMzUgQzE1MCwxNjAgMTMwLDE2NSAxMTUsMTY1IEM5MCwxNjUgODAsMTUwIDgwLDEzNSBDODAsMTIwIDkwLDExNSAxMDUsMTEwIEM5MCwxMDUgODAsMTAwIDgwLDg1IEM4MCw3MCA5MCw2MCAxMTUsNjAgWiIgZmlsbD0id2hpdGUiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjE4NSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U2hpcDwvdGV4dD4KPC9zdmc+">
+    <meta name="msapplication-TileImage" content="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMyNTYzRUI7IiAvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM0RjQ2RTU7IiAvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIHJ4PSIyMCIgZmlsbD0idXJsKCNncmFkKSIvPgogIDxwYXRoIGQ9Ik00MCw1MCBMODAsMTUwIEwxMjAsNTAgTDE2MCwxNTAgTDQwLDUwIFoiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjQiLz4KICA8cGF0aCBkPSJNNjIsNjAgQzc1LDU1IDg3LDYwIDk1LDcwIEMxMDIsODAgOTUsOTUgODAsMTAwIEM5NSwxMDAgMTEwLDExMCAxMTAsMTI1IEMxMTAsMTQwIDk1LDE1MCA3NSwxNTAgTDYwLDE1MCBMNjAsMTMwIEw3NSwxMzAgQzg1LDEzMCA5MCwxMjUgOTAsMTIwIEM5MCwxMTUgODUsMTEwIDc1LDExMCBMNjAsMTEwIEw2MCw5MCBMNzAsOTAgQzgwLDkwIDg1LDg1IDg1LDgwIEM4NSw3NSA4MCw3MCA3MCw3MCBMNjAsNzAgTDYwLDYwIEw2Miw2MCBaIiBmaWxsPSJ3aGl0ZSIvPgogIDxwYXRoIGQ9Ik0xMTUsNjAgQzEzMCw2MCAxNTAsNjUgMTUwLDkwIEwxMzAsOTAgQzEzMCw4MCAxMjUsNzUgMTE1LDc1IEMxMDUsNzUgMTAwLDgwIDEwMCw5MCBDMTAwLDEwMCAxMDUsMTA1IDExNSwxMDUgTDEyMCwxMDUgTDEyMCwxMjAgTDExNSwxMjAgQzEwNSwxMjAgMTAwLDEyNSAxMDAsMTM1IEMxMDAsMTQ1IDEwNSwxNTAgMTE1LDE1MCBDMTI1LDE1MCAxMzAsMTQ1IDEzMCwxMzUgTDE1MCwxMzUgQzE1MCwxNjAgMTMwLDE2NSAxMTUsMTY1IEM5MCwxNjUgODAsMTUwIDgwLDEzNSBDODAsMTIwIDkwLDExNSAxMDUsMTEwIEM5MCwxMDUgODAsMTAwIDgwLDg1IEM4MCw3MCA5MCw2MCAxMTUsNjAgWiIgZmlsbD0id2hpdGUiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjE4NSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U2hpcDwvdGV4dD4KPC9zdmc+">
+    <meta name="msapplication-TileColor" content="#2563EB">
+    <meta name="theme-color" content="#2563EB">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <img src="data:image/jpeg;base64,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" alt="Ship Logo" width="60" height="60">
+                    <h1>Ship Araç Rezervasyon</h1>
+                </div>
+                <nav>
+                    <div id="userInfo" class="hidden" style="background-color: #f9f9f9; padding: 8px 12px; border-radius: 8px;">
+                        <span id="userName"></span>
+                        <button id="profileBtn"><i class="fas fa-user"></i> Profil</button>
+                        <button id="logoutBtn">Çıkış Yap</button>
+                    </div>
+                    <div id="authButtons">
+                        <button id="loginBtn">Giriş Yap</button>
+                        <button id="registerBtn">Kayıt Ol</button>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <section id="welcome-section" class="section">
+                <div class="container">
+                    <h2>Şirket İçi Araç Rezervasyon Sistemine Hoş Geldiniz</h2>
+                    <p>Giriş yaparak araçları görüntüleyebilir ve rezervasyon yapabilirsiniz.</p>
+                </div>
+            </section>
+
+            <section id="auth-section" class="section hidden">
+                <div class="container">
+                    <div id="loginForm" class="auth-form">
+                        <h3>Giriş Yap</h3>
+                        <form id="login-form">
+                            <div class="form-group">
+                                <label for="loginEmail">E-posta</label>
+                                <input type="email" id="loginEmail" required>
+                                <span class="error-message" id="loginEmailError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="loginPassword">Şifre</label>
+                                <input type="password" id="loginPassword" required>
+                                <span class="error-message" id="loginPasswordError"></span>
+                            </div>
+                            <button type="submit">Giriş Yap</button>
+                        </form>
+                        <p>Hesabınız yok mu? <a href="#" id="showRegister">Kayıt olun</a></p>
+                    </div>
+
+                    <div id="registerForm" class="auth-form hidden">
+                        <h3>Kayıt Ol</h3>
+                        <form id="register-form">
+                            <div class="form-group">
+                                <label for="registerName">Ad Soyad</label>
+                                <input type="text" id="registerName" required>
+                                <span class="error-message" id="registerNameError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="registerEmail">E-posta</label>
+                                <input type="email" id="registerEmail" required>
+                                <span class="error-message" id="registerEmailError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="registerPassword">Şifre</label>
+                                <input type="password" id="registerPassword" required>
+                                <span class="error-message" id="registerPasswordError"></span>
+                            </div>
+                            <button type="submit">Kayıt Ol</button>
+                        </form>
+                        <p>Zaten hesabınız var mı? <a href="#" id="showLogin">Giriş yapın</a></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="dashboard-section" class="section hidden fade-in">
+                <div class="container">
+                    <div class="dashboard-header">
+                        <h2>Araç Rezervasyon Sistemi</h2>
+                        <div>
+                            <div id="admin-controls" class="hidden">
+                                <button id="addCarBtn" class="admin-button"><i class="fas fa-plus" style="color: #f9f9f9;"></i> Yeni Araç Ekle</button>
+                                <button id="manageCarsBtn" class="admin-button"><i class="fas fa-car" style="color: #f9f9f9;"></i> Araçları Yönet</button>
+                            </div>
+                            <button id="manageReservationsBtn" class="secondary-btn hidden"><i class="fas fa-tasks"></i> Rezervasyonları Yönet</button>
+                            <button id="testEmailBtn" class="secondary-btn hidden"><i class="fas fa-envelope"></i> Test E-postası</button>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-content fade-in">
+                        <!-- İstatistikler -->
+                        <div class="stats-container">
+                            <div class="stat-card fade-in">
+                                <div class="icon"><i class="fas fa-car"></i></div>
+                                <div class="stat-title">Toplam Araç</div>
+                                <div class="stat-value" id="total-cars">0</div>
+                            </div>
+                            <div class="stat-card fade-in">
+                                <div class="icon"><i class="fas fa-calendar-check"></i></div>
+                                <div class="stat-title">Bugünkü Rezervasyon</div>
+                                <div class="stat-value" id="today-reservations">0</div>
+                            </div>
+                            <div class="stat-card fade-in">
+                                <div class="icon"><i class="fas fa-car-side"></i></div>
+                                <div class="stat-title">Müsait Araç</div>
+                                <div class="stat-value" id="available-cars">0</div>
+                            </div>
+                            <div class="stat-card fade-in">
+                                <div class="icon"><i class="fas fa-clipboard-list"></i></div>
+                                <div class="stat-title">Toplam Rezervasyon</div>
+                                <div class="stat-value" id="total-reservations">0</div>
+                            </div>
+                        </div>
+
+                        <!-- Yeni grid yapısı -->
+                        <div class="dashboard-grid">
+                            <div class="dashboard-left">
+                                <!-- Gizli tarih filtresi - JS için gerekli -->
+                                <input type="date" id="dateFilter" class="hidden">
+                                
+                                <!-- Takvim Görünümü -->
+                                <div class="calendar-container fade-in">
+                                    <div class="calendar-header">
+                                        <div class="calendar-title" id="calendar-month">Ekim 2023</div>
+                                        <div class="calendar-nav">
+                                            <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                                            <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-grid" id="calendar-grid">
+                                        <!-- Takvim JavaScript ile doldurulacak -->
+                                    </div>
+                                </div>
+                                
+                                <!-- Kullanıcı Rezervasyonları -->
+                                <div class="user-reservations-container fade-in">
+                                    <h3>Rezervasyonlarım</h3>
+                                    <div id="dashboardUserReservations" class="user-reservations-list">
+                                        <!-- Kullanıcının rezervasyonları buraya eklenecek -->
+                                        <div class="loading">Rezervasyonlar yükleniyor...</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Müsaitlik Paneli -->
+                            <div id="availabilityPanel" class="availability-panel fade-in">
+                                <h3>Araç Müsaitliği <span id="availabilityDate" class="selected-date" style="color: white;">Tarih</span></h3>
+                                <div id="availabilityCarList" class="availability-car-list">
+                                    <!-- Araçlar JavaScript ile doldurulacak -->
+                                    <div class="no-selection">Takvimden bir tarih seçin</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Araç Listesi -->
+                        <div id="carList" class="car-list hidden">
+                            <!-- Araçlar JavaScript ile doldurulacak -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rezervasyon Yönetim Bölümü -->
+            <section id="reservation-management-section" class="section hidden">
+                <div class="container">
+                    <div class="dashboard-header">
+                        <h2>Rezervasyon Yönetimi</h2>
+                        <button id="backToDashboardBtn"><i class="fas fa-arrow-left"></i> Panele Dön</button>
+                    </div>
+
+                    <div class="reservation-filters">
+                        <div class="form-group">
+                            <label for="reservationStatusFilter">Durum</label>
+                            <select id="reservationStatusFilter">
+                                <option value="all">Tümü</option>
+                                <option value="pending">Bekleyen</option>
+                                <option value="approved">Onaylanan</option>
+                                <option value="rejected">Reddedilen</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="reservationDateFilter">Tarih</label>
+                            <input type="date" id="reservationDateFilter">
+                        </div>
+                        <button id="reservationFilterBtn">Filtrele</button>
+                    </div>
+
+                    <div id="reservationsList" class="reservations-list">
+                        <!-- Rezervasyonlar buraya dinamik olarak eklenecek -->
+                        <div class="loading">Rezervasyonlar yükleniyor...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Modal: Rezervasyon -->
+            <div id="reservationModal" class="modal hidden">
+                <div class="modal-content fade-in">
+                    <span class="close-button">&times;</span>
+                    <h3>Araç Rezervasyonu</h3>
+                    <div id="carDetails"></div>
+                    <form id="reservation-form">
+                        <input type="hidden" id="carId">
+                        <div class="form-group">
+                            <label for="reservationDate">Rezervasyon Tarihi:</label>
+                            <input type="date" id="reservationDate" required>
+                        </div>
+                        <div class="time-group">
+                            <div class="form-group">
+                                <label for="startTime">Başlangıç Saati:</label>
+                                <input type="time" id="startTime" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="endTime">Bitiş Saati:</label>
+                                <input type="time" id="endTime" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reservationNote">Not (Zorunlu):</label>
+                            <textarea id="reservationNote" required rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="primary-btn">Rezervasyon Yap</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal: Araç Ekleme/Düzenleme -->
+            <div id="addCarModal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close-button">&times;</span>
+                    <h3>Yeni Araç Ekle</h3>
+                    <form id="add-car-form">
+                        <div class="form-group">
+                            <label for="carPlate">Plaka</label>
+                            <input type="text" id="carPlate" required>
+                            <span class="error-message" id="carPlateError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="carBrand">Marka</label>
+                            <input type="text" id="carBrand" required>
+                            <span class="error-message" id="carBrandError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="carModel">Model</label>
+                            <input type="text" id="carModel" required>
+                            <span class="error-message" id="carModelError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="carYear">Yıl</label>
+                            <input type="number" id="carYear" required min="1900" max="2099">
+                            <span class="error-message" id="carYearError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="carColor">Renk</label>
+                            <input type="text" id="carColor" required>
+                            <span class="error-message" id="carColorError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="carImage">Resim URL (İsteğe bağlı)</label>
+                            <input type="url" id="carImage">
+                            <span class="error-message" id="carImageError"></span>
+                        </div>
+                        <button type="submit">Ekle</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal: Rezervasyon Detayları -->
+            <div id="reservationDetailModal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close-button">&times;</span>
+                    <h3>Rezervasyon Detayları</h3>
+                    <div id="reservationDetails"></div>
+                    <div id="adminActions" class="admin-actions">
+                        <button id="approveReservationBtn" class="approve-btn"><i class="fas fa-check"></i> Onayla</button>
+                        <button id="rejectReservationBtn" class="reject-btn"><i class="fas fa-times"></i> Reddet</button>
+                        <button id="deleteReservationModalBtn" class="delete-reservation-btn"><i class="fas fa-trash-alt"></i> Sil</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal: Kullanıcı Profili -->
+            <div id="profileModal" class="modal hidden">
+                <div class="modal-content fade-in">
+                    <span class="close-button">&times;</span>
+                    
+                    <div class="profile-tabs">
+                        <div class="profile-tab active" data-tab="user-info">Bilgilerim</div>
+                        <div class="profile-tab" data-tab="user-reservations">Rezervasyonlarım</div>
+                        <div class="profile-tab" data-tab="edit-profile">Profili Düzenle</div>
+                    </div>
+                    
+                    <!-- Kullanıcı Bilgileri -->
+                    <div id="user-info-content" class="profile-tab-content active">
+                        <div class="profile-info">
+                            <div class="profile-header">
+                                <div class="profile-avatar">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <div>
+                                    <div id="profileName" class="profile-name"></div>
+                                    <div id="profileEmail" class="profile-email"></div>
+                                    <div id="profileRole" class="profile-role"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Kullanıcı Rezervasyonları -->
+                    <div id="user-reservations-content" class="profile-tab-content">
+                        <h3>Rezervasyonlarım</h3>
+                        <div id="userReservationsList" class="user-reservations-list">
+                            <!-- Rezervasyonlar buraya yüklenecek -->
+                        </div>
+                    </div>
+                    
+                    <!-- Profil Düzenleme -->
+                    <div id="edit-profile-content" class="profile-tab-content">
+                        <h3>Profili Düzenle</h3>
+                        <form id="profile-edit-form">
+                            <div class="form-group">
+                                <label for="profileEditName">Ad Soyad:</label>
+                                <input type="text" id="profileEditName">
+                            </div>
+                            <div class="form-group">
+                                <label for="profileEditPassword">Yeni Şifre (değiştirmek istemiyorsanız boş bırakın):</label>
+                                <input type="password" id="profileEditPassword">
+                            </div>
+                            <button type="submit" class="primary-btn">Bilgileri Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal: Günlük Rezervasyon Detayları / Yeni Rezervasyon -->
+            <div id="dailyReservationsModal" class="modal hidden">
+                <div class="modal-content fade-in">
+                    <span class="close-button">&times;</span>
+                    <h3>Günlük Rezervasyonlar: <span id="selectedDateDisplay"></span></h3>
+                    
+                    <!-- Seçilen günün mevcut rezervasyonları -->
+                    <div>
+                        <h4>Günün Rezervasyonları</h4>
+                        <div id="dailyReservationsList" class="reservations-list-condensed">
+                            <!-- Günlük rezervasyon listesi yüklenecek -->
+                        </div>
+                    </div>
+                    
+                    <!-- Yeni rezervasyon formu -->
+                    <div>
+                        <h4 class="mt-4">Yeni Rezervasyon Oluştur</h4>
+                        <form id="daily-new-reservation-form">
+                            <input type="hidden" id="dailyReservationDate">
+                            <div class="form-group">
+                                <label for="dailySelectCar">Araç:</label>
+                                <select id="dailySelectCar" required>
+                                    <option value="">-- Araç Seçiniz --</option>
+                                    <!-- Araçlar JavaScript ile yüklenecek -->
+                                </select>
+                                <div id="dailySelectCarError" class="error-message"></div>
+                            </div>
+                            
+                            <!-- Araç günlük zaman çizelgesi -->
+                            <div id="dailyCarScheduleTimelineContainer" style="margin-top: 10px; margin-bottom: 15px; display: none;">
+                                <label>Seçilen aracın günlük programı:</label>
+                                <div id="dailyCarScheduleTimeline" class="schedule-timeline">
+                                    <!-- Zaman çizelgesi burada gösterilecek -->
+                                </div>
+                            </div>
+                            
+                            <div class="time-group">
+                                <div class="form-group">
+                                    <label for="dailyStartTime">Başlangıç Saati:</label>
+                                    <input type="time" id="dailyStartTime" required>
+                                    <div id="dailyStartTimeError" class="error-message"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dailyEndTime">Bitiş Saati:</label>
+                                    <input type="time" id="dailyEndTime" required>
+                                    <div id="dailyEndTimeError" class="error-message"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="dailyReservationNote">Not (Zorunlu):</label>
+                                <textarea id="dailyReservationNote" required rows="2"></textarea>
+                            </div>
+                            
+                            <div id="dailyAvailabilityMessage" class="availability-message"></div>
+                            
+                            <button type="submit" class="primary-btn">Rezervasyon Oluştur</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Araç Yönetim Bölümü -->
+            <section id="car-management-section" class="section hidden">
+                <div class="container">
+                    <div class="dashboard-header">
+                        <h2>Araç Yönetimi</h2>
+                        <button id="backToDashboardFromCarsBtn"><i class="fas fa-arrow-left"></i> Panele Dön</button>
+                    </div>
+
+                    <div class="action-bar">
+                        <button id="addNewCarBtn" class="primary-btn"><i class="fas fa-plus"></i> Yeni Araç Ekle</button>
+                    </div>
+
+                    <div id="carManagementList" class="cars-list">
+                        <!-- Araçlar buraya dinamik olarak eklenecek -->
+                        <div class="loading">Araçlar yükleniyor...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Modal: Rezervasyon Değerlendirme -->
+            <div id="reviewModal" class="modal hidden">
+                <div class="modal-content fade-in">
+                    <span class="close-button">&times;</span>
+                    <h3>Rezervasyon Değerlendirmesi</h3>
+                    <div id="reviewCarDetails"></div>
+                    <form id="review-form">
+                        <input type="hidden" id="reviewReservationId">
+                        <div class="form-group">
+                            <label for="rating">Memnuniyet Puanı:</label>
+                            <div class="rating-stars">
+                                <i class="fas fa-star" data-rating="1"></i>
+                                <i class="fas fa-star" data-rating="2"></i>
+                                <i class="fas fa-star" data-rating="3"></i>
+                                <i class="fas fa-star" data-rating="4"></i>
+                                <i class="fas fa-star" data-rating="5"></i>
+                                <input type="hidden" id="ratingValue" name="rating" value="0">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reviewComment">Yorumunuz:</label>
+                            <textarea id="reviewComment" rows="4" placeholder="Rezervasyon deneyiminizi değerlendirin..."></textarea>
+                        </div>
+                        <button type="submit" class="primary-btn">Değerlendirmeyi Gönder</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal: Rezervasyon Reddetme Sebebi -->
+            <div id="rejectionReasonModal" class="modal hidden">
+                <div class="modal-content fade-in">
+                    <span class="close-button">&times;</span>
+                    <h3>Rezervasyon Reddetme Sebebi</h3>
+                    <form id="rejection-reason-form">
+                        <input type="hidden" id="rejectionReservationId">
+                        <div class="form-group">
+                            <label for="rejectionReason">Red Sebebi (Zorunlu):</label>
+                            <textarea id="rejectionReason" rows="4" required placeholder="Rezervasyonun neden reddedildiğini açıklayın..."></textarea>
+                        </div>
+                        <div class="modal-actions">
+                            <button type="button" id="cancelRejectionBtn" class="secondary-btn">İptal</button>
+                            <button type="submit" class="reject-btn">Rezervasyonu Reddet</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+
+        <footer>
+            <p>&copy; 2025- Ship Global Lojistik Şirket İçi Araç Rezervasyon Sistemi</p>
+        </footer>
+    </div>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Uygulama JavaScript -->
+    <script src="js/config.supabase.js"></script>
+    <script src="js/auth.supabase.js"></script>
+    <script src="js/app.supabase.js"></script>
+    <script>
+        // Sayfa yüklenirken karakter kodlama sorunlarını düzeltmek için
+        document.addEventListener('DOMContentLoaded', function() {
+            // Rezervasyonlarım sekmesindeki text'i düzelt
+            const reservationTab = document.querySelector('.profile-tab[data-tab="user-reservations"]');
+            if (reservationTab) {
+                reservationTab.textContent = 'Rezervasyonlarım';
+            }
+        });
+    </script>
+</body>
+</html> 
