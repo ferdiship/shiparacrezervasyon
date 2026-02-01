@@ -15,6 +15,11 @@ node_modules/
 .firebase/
 firebase-debug.log
 firestore-debug.log
+firebase.json
+.firebaserc
+functions/
+public/
+*.json.bak
 
 # IDE
 .vscode/
